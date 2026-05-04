@@ -1,4 +1,4 @@
- FIRST FILE CODE// one.java
+ 1️⃣ FIRST FILE CODE  make this as interface file // one.java
 
 import java.rmi.*;
 public interface one extends Remote
@@ -8,7 +8,7 @@ public interface one extends Remote
 }
 
 
-SECOND FILE CPDE //two.java
+2️⃣ SECOND FILE CPDE //two.java
 
 import java.rmi.*;
 import java.lang.*;
@@ -34,7 +34,7 @@ public class two extends UnicastRemoteObject implements one
 }
 
 
- THIRD FILE CODE //rmiserver.java
+ 3️⃣ THIRD FILE CODE //rmiserver.java
 import java.io.*;
 import java.rmi.*;
 import java.net.*;
@@ -56,7 +56,7 @@ public class rmiserver
 }
 
 
- FOURTH FILE CODE//rmiclient.java
+4️⃣   FOURTH FILE CODE//rmiclient.java
 import java.io.*;
 import java.rmi.*;
 import java.net.*;
