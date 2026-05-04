@@ -1,0 +1,67 @@
+1️⃣  java file code 
+
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/HelloServlet")
+public class HelloServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
+    public HelloServlet() {
+        super();
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        // Set response type
+        response.setContentType("text/html");
+
+        PrintWriter pw = response.getWriter();
+
+        // Get parameter
+        String s = request.getParameter("t1");
+
+        // Handle null case (important)
+        if (s == null || s.trim().isEmpty()) {
+            s = "Guest";
+        }
+
+        // Proper HTML output
+        pw.println("<html><body>");
+        pw.println("<h1>Hello, " + s + "</h1>");
+        pw.println("</body></html>");
+
+        pw.close();
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doGet(request, response);
+    }
+}
+
+
+2️⃣ Make HTML file name as index  //  HTML file code 
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login Page</title>
+</head>
+<body>
+<form method="get" action="HelloServlet">
+<pre>
+Enter your name: <input type="text" name=t1>
+<input type=submit>
+<input type=reset>
+</pre>
+</form>
+</body>
+</html>
