@@ -1,7 +1,7 @@
  FIRST FILE CODE// one.java
 
 import java.rmi.*;
-interface one extends Remote
+public interface one extends Remote
 {
 
     public int palin(String a) throws RemoteException;
