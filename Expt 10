@@ -1,0 +1,93 @@
+1️⃣ HTML file code 
+
+
+<html>
+<head>
+    <title>Calculator App</title>
+</head>
+<body>
+    <form action="CalServlet" method="post">
+        Enter First Number:
+        <input type="text" name="txtN1"><br><br>
+
+        Enter Second Number:
+        <input type="text" name="txtN2"><br><br>
+
+        Select an Operation:<br>
+        <input type="radio" name="opr" value="+"> Addition<br>
+        <input type="radio" name="opr" value="-"> Subtraction<br>
+        <input type="radio" name="opr" value="*"> Multiply<br>
+        <input type="radio" name="opr" value="/"> Divide<br><br>
+
+        <input type="reset" value="Reset">
+        <input type="submit" value="Calculate">
+    </form>
+</body>
+</html>
+
+2️⃣java file code 
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/CalServlet")   // 🔥 important mapping
+public class CalServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+
+        out.println("<html><head><title>Calculator Result</title></head><body>");
+
+        try {
+            double n1 = Double.parseDouble(request.getParameter("txtN1"));
+            double n2 = Double.parseDouble(request.getParameter("txtN2"));
+            String opr = request.getParameter("opr");
+
+            double result = 0;
+
+            if (opr == null) {
+                out.println("<h2>Please select an operation</h2>");
+            } 
+            else if (opr.equals("+")) {
+                result = n1 + n2;
+            } 
+            else if (opr.equals("-")) {
+                result = n1 - n2;
+            } 
+            else if (opr.equals("*")) {
+                result = n1 * n2;
+            } 
+            else if (opr.equals("/")) {
+                if (n2 == 0) {
+                    out.println("<h2>Cannot divide by zero</h2>");
+                    out.println("</body></html>");
+                    return;
+                }
+                result = n1 / n2;
+            }
+
+            if (opr != null) {
+                out.println("<h1>Result = " + result + "</h1>");
+            }
+
+        } catch (Exception e) {
+            out.println("<h2>Invalid input! Please enter numbers.</h2>");
+        }
+
+        out.println("</body></html>");
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doGet(request, response);
+    }
+}
