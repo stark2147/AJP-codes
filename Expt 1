@@ -1,0 +1,45 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class KeyEventApplet extends JFrame implements KeyListener {
+private JLabel label;
+
+public KeyEventApplet() {
+// Set up JFrame properties
+setTitle("Key Event Demo");
+setSize(400, 300);
+setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+setLayout(new FlowLayout());
+
+// Label to display key event status
+label = new JLabel("Press any key...");
+label.setFont(new Font("Arial", Font.BOLD, 16));
+add(label);
+
+// Add KeyListener to the frame
+addKeyListener(this);
+setFocusable(true);
+setVisible(true);
+}
+
+@Override
+public void keyPressed(KeyEvent e) {
+
+label.setText("Key Pressed: " + e.getKeyChar());
+}
+
+@Override
+public void keyReleased(KeyEvent e) {
+label.setText("Key Released: " + e.getKeyChar());
+}
+
+@Override
+public void keyTyped(KeyEvent e) {
+label.setText("Key Typed: " + e.getKeyChar());
+}
+
+public static void main(String[] args) {
+new KeyEventApplet();
+}
+}
