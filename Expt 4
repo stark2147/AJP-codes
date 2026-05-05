@@ -1,3 +1,6 @@
+// replace the username and password in the Connection con line 
+
+
 package project4;
 import java.sql.*; 
 public class Database {  
