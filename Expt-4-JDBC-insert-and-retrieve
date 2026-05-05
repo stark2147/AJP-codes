@@ -1,3 +1,16 @@
+//mysql datbase and table connection code 
+
+
+CREATE DATABASE sonoo;
+USE sonoo;
+
+CREATE TABLE student (
+    stud_id INT,
+    stud_name VARCHAR(20),
+    stud_address VARCHAR(30)
+);
+
+
 // replace the username and password in the Connection con line 
 
 
